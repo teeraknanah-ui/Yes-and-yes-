@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Comic Sans MS', cursive;
+  overflow: hidden;
+}
+
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  width: 90%;
+  max-width: 420px;
+}
+
+.chibi {
+  font-size: 4.5rem;
+  animation: bounce 1.4s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.fade {
+  animation: fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+h1 {
+  color: #ff3366;
+  font-size: 2.4em;
+}
+
+.buttons {
+  margin-top: 25px;
+  position: relative;
+  height: 120px;
+}
+
+button {
+  font-size: 1.2em;
+  padding: 15px 35px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff3366;
+  color: white;
+}
+
+#no {
+  background: #ffd6e0;
+  color: #ff3366;
+  position: absolute;
+  left: 55%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+  <div class="chibi">🧸🫶🧸</div>
+  <h1 class="fade">Sending love…</h1>
+</div>
+
+<script>
+let step = 0;
+let noClicks = 0;
+const card = document.getElementById("card");
+
+setTimeout(() => {
+  card.innerHTML = `
+    <div class="chibi">💖🫶💖</div>
+    <h1 class="fade">Will you be my Valentine? 💝</h1>
+    <div class="buttons">
+      <button id="yes">YES 💖</button>
+      <button id="no">NO 🙈</button>
+    </div>
+  `;
+
+  const yesBtn = document.getElementById("yes");
+  const noBtn = document.getElementById("no");
+
+  yesBtn.addEventListener("click", () => {
+    card.innerHTML = `
+      <div class="chibi">🧢💘😌</div>
+      <h1>I already knew it 💖</h1>
+      <h1>My Valentine 😏💝</h1>
+    `;
+  });
+
+  noBtn.addEventListener("click", () => {
+    noClicks++;
+
+    if (noClicks <= 3) {
+      const x = Math.random() * (window.innerWidth - 140);
+      const y = Math.random() * (window.innerHeight - 100);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    } else {
+      card.innerHTML = `
+        <div class="chibi">😌💘😌</div>
+        <h1>Invalid choice ❌</h1>
+        <h1>Your rejection has been rejected 💖</h1>
+        <h1>You’re already my Valentine 💝</h1>
+      `;
+    }
+  });
+
+}, 2500);
+</script>
+
+</body>
+</html>
